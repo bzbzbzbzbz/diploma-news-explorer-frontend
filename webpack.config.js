@@ -69,12 +69,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/pages/index.html',
-            filename: 'index.html'
+            filename: 'index.html',
+            favicon: "./src/images/fav.png"
         }),
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/pages/saved.html',
-            filename: 'saved.html'
+            filename: 'saved.html',
+            favicon: "./src/images/fav.png"
         })
     ]
 }

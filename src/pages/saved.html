@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>News Explorer</title>
+  <link rel="icon" href="<%=require('../images/fav.png').default%>">
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
-  <script type="module" src="<%=htmlWebpackPlugin.files.js %>" defer></script>
+  <script type="module" src="<%=htmlWebpackPlugin.files.js %>"></script>
 </head>
 <body class="body">
 
@@ -22,6 +23,7 @@
         <img src="<%=require('../images/Union.svg').default%>" alt="logout" class="header__nav-icon">
       </button>
     </nav>
+    <img src="<%=require('../images/menu_black.svg').default%>" alt="nav-menu" class="header__nav-menu">
   </header>
 
   <main class="main">
@@ -120,14 +122,18 @@
   <footer class="footer">
     <p class="footer__text">&copy; 2020 Supersite, Powered by News API</p>
     <nav class="footer__nav-text ">
-      <a href="./index.html" class="footer__nav-main footer-link">Главная</a>
-      <a href="https://praktikum.yandex.ru/" class="footer__nav-ya footer-link">Яндекс.Практикум</a>
-      <a href="https://github.com/bzbzbzbzbz/diploma-news-explorer-frontend/" class="footer__nav-github footer-link">
-        <img src="<%=require('../images/github.svg').default%>" alt="github icon" class="github-icon">
-      </a>
-      <a href="https://www.facebook.com/" class="footer__nav-facebook footer-link">
-        <img src="<%=require('../images/iconmonstr-facebook-6.svg').default%>" alt="facebook icon" class="facebook-icon">
-      </a>
+      <div class="footer__nav-links">
+        <a href="./index.html" class="footer__nav-main footer-link">Главная</a>
+        <a href="https://praktikum.yandex.ru/" class="footer__nav-ya footer-link">Яндекс.Практикум</a>
+      </div>
+      <div class="footer__nav-icons">
+        <a href="https://github.com/bzbzbzbzbz/diploma-news-explorer-frontend/" class="footer__nav-github footer-link">
+          <img src="<%=require('../images/github.svg').default%>" alt="github icon" class="github-icon">
+        </a>
+        <a href="https://www.facebook.com/" class="footer__nav-facebook footer-link">
+          <img src="<%=require('../images/iconmonstr-facebook-6.svg').default%>" alt="facebook icon" class="facebook-icon">
+        </a>
+      </div>
     </nav>
   </footer>
 

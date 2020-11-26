@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>News Explorer</title>
+  <link rel="icon" href="<%=require('../images/fav.png').default%>">
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
-  <script type="module" src="<%=htmlWebpackPlugin.files.js %>" defer></script>
+  <script type="module" src="<%=htmlWebpackPlugin.files.js %>"></script>
 </head>
 <body class="body">
 
@@ -15,7 +16,7 @@
   <section class="popup disabled">
     <div class="popup__signin disabled">
       <h2 class="popup__signin-title">Вход</h2>
-      <form action="" class="popup__signin-form">
+      <form class="popup__signin-form">
         <div class="popup__signin-form-block">
           <span class="popup__signin-form-label">Email</span>
           <input type="email" class="popup__signin-form-input" placeholder="Введите почту" required>
@@ -33,7 +34,7 @@
     </div>
     <div class="popup__signup disabled">
       <h2 class="popup__signin-title">Регистрация</h2>
-      <form action="" class="popup__signin-form">
+      <form class="popup__signin-form">
         <div class="popup__signin-form-block">
           <span class="popup__signin-form-label">Email</span>
           <input type="email" class="popup__signin-form-input" placeholder="Введите почту" required>
@@ -58,12 +59,12 @@
     <div class="popup__signup-success disabled">
       <h2 class="popup__signup-success-title">Пользователь успешно зарегистрирован!</h2>
       <button class="popup__signup-success-button button">Войти</button>
-      <img src="<%=require('../images/close.svg').default%>" alt="close" class="popup__signup-success-close close-button">
+      <img src="<%=require('../images/close.svg').default%>" alt="close" class="popup__signin-close close-button">
     </div>
   </section>
 
   <header class="header">
-    <a class="header__logo link" href="./index.html">NewsExplorer</a>
+    <a class="header__logo header-link" href="./index.html">NewsExplorer</a>
     <nav class="header__nav logout">
       <a class="header__nav-main header-link chosen" href="#">Главная</a>
       <button class="header__nav-login button">Авторизоваться</button>
@@ -76,6 +77,12 @@
         <img src="<%=require('../images/logout.svg').default%>" alt="logout" class="header__nav-icon">
       </button>
     </nav>
+    <img src="<%=require('../images/menu.svg').default%>" alt="nav-menu" class="header__nav-menu">
+    <nav class="header__nav_mobile disabled">
+      <a href="./index.html" class="header__nav-main_mobile header-link">Главная</a>
+      <a href="./saved.html" class="header__nav-saved_mobile header-link">Сохраненные статьи</a>
+      <button class="header__nav-login_mobile button">Авторизоваться</button>
+    </nav>
   </header>
 
   <main class="main">
@@ -84,7 +91,7 @@
       <h1 class="search__title">Что творится в мире?</h1>
       <h2 class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</h2>
       <form class="search__form">
-        <input type="text" class="search__input" placeholder="Введите тему новости">
+        <input type="text" class="search__input" placeholder="Введите тему новости" required>
         <button class="search__submit button">Искать</button>
       </form>
     </section>
@@ -174,14 +181,18 @@
   <footer class="footer">
     <p class="footer__text">&copy; 2020 Supersite, Powered by News API</p>
     <nav class="footer__nav-text ">
-      <a href="./index.html" class="footer__nav-main footer-link">Главная</a>
-      <a href="https://praktikum.yandex.ru/" class="footer__nav-ya footer-link">Яндекс.Практикум</a>
-      <a href="https://github.com/bzbzbzbzbz/diploma-news-explorer-frontend/" class="footer__nav-github footer-link">
-        <img src="<%=require('../images/github.svg').default%>" alt="github icon" class="github-icon">
-      </a>
-      <a href="https://www.facebook.com/" class="footer__nav-facebook footer-link">
-        <img src="<%=require('../images/iconmonstr-facebook-6.svg').default%>" alt="facebook icon" class="facebook-icon">
-      </a>
+      <div class="footer__nav-links">
+        <a href="./index.html" class="footer__nav-main footer-link">Главная</a>
+        <a href="https://praktikum.yandex.ru/" class="footer__nav-ya footer-link">Яндекс.Практикум</a>
+      </div>
+      <div class="footer__nav-icons">
+        <a href="https://github.com/bzbzbzbzbz/diploma-news-explorer-frontend/" class="footer__nav-github footer-link">
+          <img src="<%=require('../images/github.svg').default%>" alt="github icon" class="github-icon">
+        </a>
+        <a href="https://www.facebook.com/" class="footer__nav-facebook footer-link">
+          <img src="<%=require('../images/iconmonstr-facebook-6.svg').default%>" alt="facebook icon" class="facebook-icon">
+        </a>
+      </div>
     </nav>
   </footer>
 

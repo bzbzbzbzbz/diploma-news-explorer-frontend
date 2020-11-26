@@ -15,6 +15,27 @@ const popup = document.querySelector('.popup');
 const closeButton = document.querySelectorAll('.close-button');
 const logoutHeaderNav = document.querySelector('.logout')
 const loginHeaderNav = document.querySelector('.login')
+const loginButtonMobile = document.querySelector('.header__nav-login_mobile');
+
+const mobileNavMenu = document.querySelector('.header__nav-menu');
+
+mobileNavMenu.addEventListener('click', () => {
+  document.querySelector('.header__nav_mobile').classList.toggle('disabled');
+  if (document.querySelector('.header__nav_mobile').classList.contains('disabled')) {
+    document.querySelector('.header').style.backgroundColor = 'transparent';
+  } else {
+    document.querySelector('.header').style.backgroundColor = '#1A1B22';
+  }
+})
+
+loginButtonMobile.addEventListener('click', () => {
+  document.querySelector('.header__nav_mobile').classList.add('disabled');
+  body.classList.add('overflow')
+  popup.classList.remove('disabled');
+  signInPopup.classList.remove('disabled');
+  document.querySelector('.header').style.backgroundColor = 'transparent';
+  mobileNavMenu.classList.add('disabled')
+})
 
 loginButton.addEventListener('click', () => {
   body.classList.add('overflow')
