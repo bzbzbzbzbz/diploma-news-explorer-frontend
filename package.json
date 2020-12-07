@@ -2,7 +2,7 @@
   "name": "diploma",
   "version": "1.0.0",
   "description": "Node.js, Webpack, modules",
-  "main": "./src/scripts/index.js",
+  "main": "src/pages/main",
   "scripts": {
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
@@ -36,6 +36,7 @@
   "dependencies": {
     "core-js": "^3.1.4",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "requirejs": "^2.3.6",
     "style-loader": "^1.2.1"
   }
 }
