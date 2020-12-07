@@ -13,8 +13,6 @@ export default class MainAPI {
   signup(data) {
     return fetch(`${this.url}/signup`, {
       method: "POST",
-      credentials: 'include',
-      SameSite: 'None',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -28,8 +26,6 @@ export default class MainAPI {
   signin(data) {
     return fetch(`${this.url}/signin`, {
       method: "POST",
-      credentials: 'include',
-      SameSite: 'None',
       headers: {
         'Content-Type': 'application/json',
       },

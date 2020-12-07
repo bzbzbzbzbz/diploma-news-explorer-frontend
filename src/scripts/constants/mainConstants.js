@@ -1,4 +1,4 @@
-export const newsURL = 'https://newsapi.org/v2'
+export const newsURL = 'https://nomoreparties.co/news/v2'
 export const apiURL = 'https://api.newsexplore.tk'
 
 //header

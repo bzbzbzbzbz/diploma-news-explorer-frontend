@@ -11,7 +11,8 @@ export default class NewsApi {
   }
 
   getNews(keyword, date, pastDate) {
-    return fetch(`${this.url}/top-headlines?q=${keyword}&from=${pastDate}&to=${date}&pageSize=100&apiKey=f4fd6869460d4dca914e5c01d2d53a50`)
+    return fetch(`${this.url}/top-headlines?q=${keyword}&from=${pastDate}&to=${date}&pageSize=100&apiKey=f4fd6869460d4dca914e5c01d2d53a50`, {
+    })
       .then(res => {
         return this._getResponseData(res);
       })
