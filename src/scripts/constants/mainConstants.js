@@ -1,5 +1,6 @@
 export const newsURL = 'https://nomoreparties.co/news/v2'
 export const apiURL = 'https://api.newsexplore.tk'
+export const newsToken = 'f4fd6869460d4dca914e5c01d2d53a50'
 
 //header
 

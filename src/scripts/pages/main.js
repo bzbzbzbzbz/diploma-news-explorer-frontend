@@ -12,33 +12,29 @@ import NewsCard from "../components/NewsCard";
 import * as constants from '../constants/mainConstants'
 
 //class handlers
-const MainApiClass = new MainAPI(constants.apiURL);
-const NewsAPIClass = new NewsApi(constants.newsURL);
-const NewsCardClass = new NewsCard(constants.cardBlock, constants.cardContainer)
-const NewsCardListClass = new NewsCardList(constants.preloader, constants.nothingFound);
-const HeaderClass = new Header(constants.nonAuthHeader, constants.authHeader, constants.logoutButton, constants.userName);
-const PopupClass = new Popup(constants.body, constants.popup, MainApiClass);
+const mainApiClass = new MainAPI(constants.apiURL);
+const newsAPIClass = new NewsApi(constants.newsURL, constants.newsToken);
+const newsCardClass = new NewsCard(constants.cardBlock, constants.cardContainer)
+const newsCardListClass = new NewsCardList(constants.preloader, constants.nothingFound);
+const headerClass = new Header(constants.nonAuthHeader, constants.authHeader, constants.logoutButton, constants.userName);
+const popupClass = new Popup(constants.body, constants.popup, mainApiClass);
 let statement = false
 let userID;
 
-if (localStorage.getItem('jwt')) {
-  statement = true;
-} else {
-  statement = false;
-}
+statement = !!localStorage.getItem('jwt');
 
 function clearRenderFunc(source) {
   source.childNodes.forEach((item) => {
-    NewsCardClass.clearRender(item)
+    newsCardClass.clearRender(item)
   })
 }
 
 window.onload = function () {
   if (statement) {
-    MainApiClass.getUserData(localStorage.getItem('jwt'))
+    mainApiClass.getUserData(localStorage.getItem('jwt'))
       .then((res) => {
         userID = res.data.name;
-        HeaderClass.render(statement, userID);
+        headerClass.render(statement, userID);
       })
       .catch((err) => {
         console.log(err)
@@ -59,34 +55,34 @@ constants.mobileMenuButton.addEventListener('click', (event) => {
     constants.mobileHeaderLoginButton.addEventListener('click', (event) => {
       constants.mobileMenuButton.classList.add('disabled');
       constants.mobileHeader.classList.add('disabled');
-      PopupClass.open()
+      popupClass.open()
     })
   }
 })
 
 constants.loginButton.addEventListener('click', () => {
-  PopupClass.open()
+  popupClass.open()
 })
 
 constants.searchForm.addEventListener('submit', (event) => {
   event.preventDefault()
   clearRenderFunc(constants.cardContainer)
-  NewsCardListClass.renderError()
-  NewsCardListClass.renderLoader('on')
+  newsCardListClass.renderError()
+  newsCardListClass.renderLoader('on')
 
   let searchInput = event.target[0].value;
-  NewsAPIClass.getNews(searchInput, constants.today().toString(), constants.weekago().toString())
+  newsAPIClass.getNews(searchInput, constants.today().toString(), constants.weekago().toString())
     .then((res) => {
       clearRenderFunc(constants.cardContainer)
-      NewsCardListClass.renderLoader()
+      newsCardListClass.renderLoader()
       if (res.totalResults === 0) {
         clearRenderFunc(constants.cardContainer)
-        NewsCardListClass.renderError('empty')
+        newsCardListClass.renderError('empty')
       } else {
         clearRenderFunc(constants.cardContainer)
         if (res.articles.length <= 3) {
           res.articles.forEach((item) => {
-            NewsCardClass.render(NewsCardListClass.renderResults(item, searchInput, PopupClass, MainApiClass));
+            newsCardClass.render(newsCardListClass.renderResults(item, searchInput, popupClass, mainApiClass));
             document.querySelector('.results__button-more').classList.add('disabled');
           })
         } else {
@@ -94,7 +90,7 @@ constants.searchForm.addEventListener('submit', (event) => {
           let counter = 0
           let max = 3
           for (counter; counter < max; counter++) {
-            NewsCardClass.render(NewsCardListClass.renderResults(res.articles[counter], searchInput, PopupClass, MainApiClass));
+            newsCardClass.render(newsCardListClass.renderResults(res.articles[counter], searchInput, popupClass, mainApiClass));
           }
           document.querySelector('.results__button-more').addEventListener('click', () => {
             if (max >= res.articles.length) {
@@ -102,9 +98,8 @@ constants.searchForm.addEventListener('submit', (event) => {
             }
             counter = counter + 3;
             max = max + 6;
-            console.log(counter, max)
             for (counter; counter < max; counter++) {
-              NewsCardClass.render(NewsCardListClass.renderResults(res.articles[counter], searchInput, PopupClass, MainApiClass));
+              newsCardClass.render(newsCardListClass.renderResults(res.articles[counter], searchInput, popupClass, mainApiClass));
             }
           })
         }
@@ -113,7 +108,7 @@ constants.searchForm.addEventListener('submit', (event) => {
     })
     .catch(() => {
       clearRenderFunc(constants.cardContainer)
-      NewsCardListClass.renderLoader()
-      NewsCardListClass.renderError('server')
+      newsCardListClass.renderLoader()
+      newsCardListClass.renderError('server')
     })
 })

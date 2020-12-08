@@ -14,7 +14,7 @@ export default class Header {
       this.logoutButton.addEventListener('click', () => {
         if (location.pathname.includes('saved')) {
           localStorage.removeItem('jwt');
-          window.location.replace('/index.html');
+          window.location.replace('./index.html');
         } else {
           localStorage.removeItem('jwt');
           location.reload()

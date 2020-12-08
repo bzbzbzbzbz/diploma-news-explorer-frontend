@@ -5,10 +5,10 @@ import NewsCard from "../components/NewsCard";
 import NewsCardList from "../components/NewsCardList";
 import Header from "../components/Header";
 
-const MainApiClass = new MainAPI(constants.apiURL);
-const NewsCardClass = new NewsCard(constants.cardBlock, constants.cardContainer)
-const NewsCardListClass = new NewsCardList(constants.preloader, constants.nothingFound);
-const HeaderClass = new Header(constants.nonAuthHeader, constants.authHeader, constants.logoutButton, constants.userName);
+const mainApiClass = new MainAPI(constants.apiURL);
+const newsCardClass = new NewsCard(constants.cardBlock, constants.cardContainer)
+const newsCardListClass = new NewsCardList(constants.preloader, constants.nothingFound);
+const headerClass = new Header(constants.nonAuthHeader, constants.authHeader, constants.logoutButton, constants.userName);
 
 let statement = true
 let userID;
@@ -25,7 +25,7 @@ constants.mobileMenuButton.addEventListener('click', (event) => {
 
 window.onload = function () {
   if (localStorage.getItem('jwt')) {
-    MainApiClass.getArticles(localStorage.getItem('jwt'))
+    mainApiClass.getArticles(localStorage.getItem('jwt'))
       .then(res => {
         let sortedKeywordArray = []
         let sortedDataPack = []
@@ -79,24 +79,24 @@ window.onload = function () {
         else if (sortedDataPack.length === 1) {
           constants.cardBlock.classList.remove('disabled')
           constants.savedArticles.textContent = `у вас 1 сохранённая статья`;
-          NewsCardClass.render(NewsCardListClass.renderResults(res.data[0], 'hello', 'empty', MainApiClass))
+          newsCardClass.render(newsCardListClass.renderResults(res.data[0], 'hello', 'empty', mainApiClass))
         }
         else {
           constants.savedArticles.textContent = `у вас ${res.data.length} сохранённых статей`;
           sortedDataPack.forEach((item) => {
             constants.cardBlock.classList.remove('disabled')
-            NewsCardClass.render(NewsCardListClass.renderResults(item, 'hello', 'empty', MainApiClass))
+            newsCardClass.render(newsCardListClass.renderResults(item, 'hello', 'empty', mainApiClass))
           })
         }
       })
       .catch((err) => {
         console.log(err)
       })
-    MainApiClass.getUserData(localStorage.getItem('jwt'))
+    mainApiClass.getUserData(localStorage.getItem('jwt'))
       .then((res) => {
         userID = res.data.name;
         constants.savedUserName.textContent = res.data.name;
-        HeaderClass.render(statement, userID);
+        headerClass.render(statement, userID);
       })
       .catch((err) => {
         console.log(err)

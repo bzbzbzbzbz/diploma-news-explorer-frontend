@@ -1,4 +1,4 @@
-import { signInData, signUpData, apiURL } from '../constants/mainConstants'
+import { signInData, signUpData } from '../constants/mainConstants'
 
 export default class Popup {
   static _signinPopup = document.querySelector('.signin-popup').content;
@@ -49,7 +49,6 @@ export default class Popup {
         signUpData['email'] = event.target[0].value;
         signUpData['password'] = event.target[1].value;
         signUpData['name'] = event.target[2].value
-        console.log(signUpData)
         this.MainApiClass.signup(signUpData)
           .then((res) => {
             localStorage.setItem('jwt', res.token);

@@ -31,8 +31,8 @@ export default class NewsCardList {
       view.querySelector('.results__card-keyword').textContent = data.keyword;
       view.querySelector('.results__card-delete').addEventListener('click', (event) => {
         mainApiClass.removeArticle(data._id, localStorage.getItem('jwt'))
-          .then((res) => {
-            console.log(res);
+          .then(() => {
+            event.target.parentNode.parentNode.removeChild(event.target.parentNode);
           })
           .catch((err) => {
             console.log(err)
